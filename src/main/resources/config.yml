@@ -1,0 +1,4 @@
+threshold:
+  ##In minutes
+  time-to-check: 1
+  logs-allowed: 2

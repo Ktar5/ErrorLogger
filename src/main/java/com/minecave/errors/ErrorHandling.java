@@ -36,9 +36,11 @@ public class ErrorHandling extends JavaPlugin{
         threshold.start();
         this.getCommand("error").setExecutor(new Commands());
 
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
-            throw new RuntimeException("This is test to see if this thing works");
-        }, 150L);
+        if(this.getConfig().getBoolean("debug")){
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
+                throw new RuntimeException("This is test to see if this thing works");
+            }, 150L);
+        }
     }
 
     @Override

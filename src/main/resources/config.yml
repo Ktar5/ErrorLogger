@@ -1,3 +1,4 @@
+debug: false
 threshold:
   ##In minutes
   time-to-check: 1

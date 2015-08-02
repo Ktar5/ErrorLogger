@@ -50,8 +50,9 @@ public class ErrorHandling extends JavaPlugin{
     }
 
     public void send(String message){
+        String ip = this.getServer().getIp();
         api.call(new SlackMessage("Version: " + this.getServer().getBukkitVersion() + "\n" +
-                "IP: " + this.getServer().getIp() + ":" + this.getServer().getPort() + "\n" +
+                "IP: " + (ip == null || ip == "" ? "localhost 0.0.0.0" : ip) + ":" + this.getServer().getPort() + "\n" +
                 "Server: " +  this.getServer().getName() + " / " + this.getServer().getServerName() + "\n" +
                 message));
     }

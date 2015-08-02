@@ -1,5 +1,7 @@
-package com.minecave.errors;
+package com.minecave.errors.commands;
 
+import com.minecave.errors.ErrorHandling;
+import com.minecave.errors.ThresholdHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

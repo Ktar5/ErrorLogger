@@ -1,6 +1,11 @@
 package com.minecave.errors;
 
+import com.minecave.errors.commands.Commands;
+import com.minecave.errors.listener.ExceptionListener;
 import lombok.Getter;
+import net.gpedro.integrations.slack.SlackApi;
+import net.gpedro.integrations.slack.SlackMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -12,9 +17,11 @@ public class ErrorHandling extends JavaPlugin{
     private ThresholdHandler threshold;
     @Getter
     private static ErrorHandling instance = null;
+    private SlackApi api = null;
 
     @Override
     public void onEnable(){
+        api = new SlackApi("https://hooks.slack.com/services/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");
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         instance = this;
@@ -28,12 +35,23 @@ public class ErrorHandling extends JavaPlugin{
         }
         threshold.start();
         this.getCommand("error").setExecutor(new Commands());
+
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
+            throw new RuntimeException("This is test to see if this thing works");
+        }, 150L);
     }
 
     @Override
     public void onDisable(){
         threshold.stop();
         instance = null;
+    }
+
+    public void send(String message){
+        api.call(new SlackMessage("Version: " + this.getServer().getBukkitVersion() + "\\n" +
+                "IP: " + this.getServer().getIp() + ":" + this.getServer().getPort() + "\\n" +
+                "Server: " +  this.getServer().getName() + " / " + this.getServer().getServerName() + "\\n" +
+                message));
     }
 
 }

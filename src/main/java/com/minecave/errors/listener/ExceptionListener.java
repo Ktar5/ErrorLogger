@@ -1,5 +1,7 @@
-package com.minecave.errors;
+package com.minecave.errors.listener;
 
+import com.minecave.errors.ErrorHandling;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginLogger;
@@ -10,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.LogRecord;
@@ -69,10 +72,16 @@ public class ExceptionListener extends PluginLogger {
             FileWriter fileWriter = new FileWriter(file, true);
             PrintWriter printWriter = new PrintWriter (fileWriter);
 
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+            printWriter.print("");
+            printWriter.print(new SimpleDateFormat(df.format(new Date())));
             record.getThrown().printStackTrace(printWriter);
 
             printWriter.close();
             fileWriter.close();
+
+            ErrorHandling.getInstance().send(ExceptionUtils.getStackTrace(record.getThrown()));
         }
     }
 

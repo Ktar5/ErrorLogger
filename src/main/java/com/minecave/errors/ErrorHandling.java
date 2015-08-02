@@ -21,9 +21,9 @@ public class ErrorHandling extends JavaPlugin{
 
     @Override
     public void onEnable(){
-        api = new SlackApi("https://hooks.slack.com/services/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");
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
+        api = new SlackApi(this.getConfig().getString("slack.token"));
         instance = this;
         threshold = new ThresholdHandler(
                 this.getConfig().getInt("threshold.time-to-check"),

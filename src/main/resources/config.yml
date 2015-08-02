@@ -2,3 +2,5 @@ threshold:
   ##In minutes
   time-to-check: 1
   logs-allowed: 2
+slack:
+  token: "https://hooks.slack.com/services/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"

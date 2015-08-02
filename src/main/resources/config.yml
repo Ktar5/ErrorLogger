@@ -1,7 +1,12 @@
+## Should we send a fake runtime exception on startup to test?
 debug: false
+
 threshold:
-  ##In minutes
+  ## Time between error-spam checks, in minutes
   time-to-check: 1
+  ## Log allowed per ^ minutes
   logs-allowed: 2
+
 slack:
+  ## Slack's incoming webhook bot token
   token: "https://hooks.slack.com/services/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"

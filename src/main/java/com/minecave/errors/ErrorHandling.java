@@ -38,7 +38,7 @@ public class ErrorHandling extends JavaPlugin{
 
         if(this.getConfig().getBoolean("debug")){
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
-                throw new RuntimeException("This is test to see if this thing works");
+                throw new RuntimeException("So, it works eh?");
             }, 150L);
         }
     }

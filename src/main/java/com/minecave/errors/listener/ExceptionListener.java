@@ -55,33 +55,36 @@ public class ExceptionListener extends PluginLogger {
 
     private void handleLog(final LogRecord record) throws IOException {
         if (record.getThrown() != null) {
-            if(ErrorHandling.getInstance().getThreshold().isHalted(this.pluginN)){
+            if(ErrorHandling.getInstance().getThreshold().isHalted(this.pluginN) &&
+                    !ErrorHandling.getInstance().getConfig().getBoolean("log.threshold.enabled")){
                 return;
             }
             String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-
-            String folderpath = ErrorHandling.getInstance().getDataFolder() + File.separator + pluginN;
-            File folder = new File(folderpath);
-            if(!folder.exists())
-                folder.mkdir();
-
-            File file = new File(folderpath + File.separator + date + ".log");
-            if(!file.exists())
-                file.createNewFile();
-
-            FileWriter fileWriter = new FileWriter(file, true);
-            PrintWriter printWriter = new PrintWriter (fileWriter);
-
             DateFormat df = new SimpleDateFormat("HH:mm:ss @ MM-dd-yyyy");
             String time = df.format(new Date());
 
-            printWriter.println("");
-            printWriter.println(time);
-            record.getThrown().printStackTrace(printWriter);
-            printWriter.close();
-            fileWriter.close();
+            if(ErrorHandling.getInstance().getConfig().getBoolean("log.enabled")) {
+                String folderpath = ErrorHandling.getInstance().getDataFolder() + File.separator + pluginN;
+                File folder = new File(folderpath);
+                if (!folder.exists())
+                    folder.mkdir();
 
-            ErrorHandling.getInstance().send(ExceptionUtils.getStackTrace(record.getThrown()), time, pluginN);
+                File file = new File(folderpath + File.separator + date + ".log");
+                if (!file.exists())
+                    file.createNewFile();
+
+                FileWriter fileWriter = new FileWriter(file, true);
+                PrintWriter printWriter = new PrintWriter(fileWriter);
+
+                printWriter.println("");
+                printWriter.println(time);
+                record.getThrown().printStackTrace(printWriter);
+                printWriter.close();
+                fileWriter.close();
+            }
+            if(ErrorHandling.getInstance().getConfig().getBoolean("slack.enabled")){
+                ErrorHandling.getInstance().send(ExceptionUtils.getStackTrace(record.getThrown()), time, pluginN);
+            }
         }
     }
 

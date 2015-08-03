@@ -32,8 +32,8 @@ public class ErrorHandling extends JavaPlugin{
         api = new SlackApi(this.getConfig().getString("slack.token"));
         instance = this;
         threshold = new ThresholdHandler(
-                this.getConfig().getInt("threshold.time-to-check"),
-                this.getConfig().getInt("threshold.logs-allowed"));
+                this.getConfig().getInt("log.threshold.time-to-check"),
+                this.getConfig().getInt("log.threshold.logs-allowed"));
         try {
             ExceptionListener.register();
         } catch (Exception e) {

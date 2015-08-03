@@ -47,7 +47,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>com.github.gpedro:slack-webhook</include>
+                                    <include>me.ktar5.slackapi:slack-webhook</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
@@ -63,9 +63,13 @@
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
+                <id>slack-webhook-mvn-repo</id>
+                <url>https://raw.github.com/ktar5/slack-webhook/mvn-repo/</url>
+                <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>always</updatePolicy>
+                </snapshots>
+            </repository>
     </repositories>
 
     <dependencies>
@@ -80,9 +84,9 @@
             <version>1.8.6-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.github.gpedro</groupId>
+            <groupId>me.ktar5.slackapi</groupId>
             <artifactId>slack-webhook</artifactId>
-            <version>slack-webhook-1.0.4</version>
+            <version>1.0.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

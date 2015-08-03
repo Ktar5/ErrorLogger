@@ -8,5 +8,10 @@ threshold:
   logs-allowed: 2
 
 slack:
+  ## The name of this server to display
+  server-name: Default
   ## Slack's incoming webhook bot token
   token: "https://hooks.slack.com/services/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"
+  pm:
+    enabled: false
+    user: "ktar5"

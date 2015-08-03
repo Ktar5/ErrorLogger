@@ -72,16 +72,16 @@ public class ExceptionListener extends PluginLogger {
             FileWriter fileWriter = new FileWriter(file, true);
             PrintWriter printWriter = new PrintWriter (fileWriter);
 
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            DateFormat df = new SimpleDateFormat("HH:mm:ss @ MM-dd-yyyy");
+            String time = df.format(new Date());
 
-            printWriter.print("");
-            printWriter.print(new SimpleDateFormat(df.format(new Date())));
+            printWriter.println("");
+            printWriter.println(time);
             record.getThrown().printStackTrace(printWriter);
-
             printWriter.close();
             fileWriter.close();
 
-            ErrorHandling.getInstance().send(ExceptionUtils.getStackTrace(record.getThrown()));
+            ErrorHandling.getInstance().send(ExceptionUtils.getStackTrace(record.getThrown()), time, pluginN);
         }
     }
 

@@ -2,7 +2,9 @@
 debug: false
 
 log:
-  emabled: true
+  enabled: true
+  shortener:
+    enabled: true
   threshold:
     enabled: true
     ## Time between error-spam checks, in minutes

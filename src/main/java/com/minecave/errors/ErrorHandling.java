@@ -20,7 +20,7 @@ public class ErrorHandling extends JavaPlugin{
     private SlackApi api = null;
 
     @Override
-    public void onEnable(){
+    public void onLoad(){
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         api = new SlackApi(this.getConfig().getString("slack.token"));
@@ -33,9 +33,12 @@ public class ErrorHandling extends JavaPlugin{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onEnable(){
         threshold.start();
         this.getCommand("error").setExecutor(new Commands());
-
         if(this.getConfig().getBoolean("debug")){
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
                 throw new RuntimeException("So, it works eh?");

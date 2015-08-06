@@ -1,5 +1,6 @@
 name: ${plugin.name}
 version: ${project.version}
+load: STARTUP
 main: ${plugin.mainClass}
 commands:
   error:

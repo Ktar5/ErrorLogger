@@ -7,6 +7,12 @@ import me.ktar5.slackapi.SlackApi;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.SimpleFormatter;
+
 /**
  * Created by Carter on 7/29/2015.
  */
@@ -21,10 +27,35 @@ public class ErrorHandling extends JavaPlugin{
 
     @Override
     public void onLoad(){
+
+        File file = new File(this.getDataFolder() + File.separator + "enableLog.log");
+        if(file.exists()){
+            file.delete();
+        }
+
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileHandler handler = null;
+        try {
+            handler = new FileHandler(getDataFolder() + File.separator + "enableLog.log", true);
+            handler.setLevel(Level.WARNING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        getServer().getLogger().addHandler(handler);
+        handler.setFormatter(new SimpleFormatter());
+
+
+
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
-        api = new SlackApi(this.getConfig().getString("slack.token"));
         instance = this;
+        api = new SlackApi(this.getConfig().getString("slack.token"));
         threshold = new ThresholdHandler(
                 this.getConfig().getInt("log.threshold.time-to-check"),
                 this.getConfig().getInt("log.threshold.logs-allowed"));
@@ -44,6 +75,10 @@ public class ErrorHandling extends JavaPlugin{
                 throw new RuntimeException("So, it works eh?");
             }, 150L);
         }
+    }
+
+    public void load(){
+
     }
 
     @Override

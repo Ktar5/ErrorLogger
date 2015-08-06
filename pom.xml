@@ -85,6 +85,11 @@
             <version>1.8.6-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.8.6-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>me.ktar5.slackapi</groupId>
             <artifactId>slack-webhook</artifactId>
             <version>1.0.4-SNAPSHOT</version>

@@ -33,31 +33,6 @@ public class ErrorHandling extends JavaPlugin{
 
     @Override
     public void onLoad(){
-
-        File file = new File(this.getDataFolder() + File.separator + "enableLog.log");
-        if(file.exists()){
-            file.delete();
-        }
-
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        FileHandler handler = null;
-        try {
-            handler = new FileHandler(getDataFolder() + File.separator + "enableLog.log", true);
-            handler.setLevel(Level.WARNING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        getServer().getLogger().addHandler(handler);
-        handler.setFormatter(new SimpleFormatter());
-
-
-
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         instance = this;
@@ -70,6 +45,10 @@ public class ErrorHandling extends JavaPlugin{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void registerEnableHandler(){
+
     }
 
     @Override

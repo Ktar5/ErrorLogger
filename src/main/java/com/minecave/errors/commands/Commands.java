@@ -6,9 +6,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-/**
- * Created by Carter on 7/31/2015.
+/*
+ * Copyright (C) 2011-Current Carter Gale (Ktar5) <buildfresh@gmail.com>
+ *
+ * This file is part of errors.
+ *
+ * errors can not be copied and/or distributed without the express
+ * permission of the aforementioned owner.
  */
+
 public class Commands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {

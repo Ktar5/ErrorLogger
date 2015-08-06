@@ -3,9 +3,15 @@ package com.minecave.errors;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Created by Carter on 7/31/2015.
+/*
+ * Copyright (C) 2011-Current Carter Gale (Ktar5) <buildfresh@gmail.com>
+ *
+ * This file is part of errors.
+ *
+ * errors can not be copied and/or distributed without the express
+ * permission of the aforementioned owner.
  */
+
 public class ThresholdHandler implements Runnable{
 
     private Map<String, Integer> reports;

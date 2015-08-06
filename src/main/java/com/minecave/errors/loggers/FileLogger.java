@@ -13,9 +13,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * Created by Carter on 8/3/2015.
+/*
+ * Copyright (C) 2011-Current Carter Gale (Ktar5) <buildfresh@gmail.com>
+ *
+ * This file is part of errors.
+ *
+ * errors can not be copied and/or distributed without the express
+ * permission of the aforementioned owner.
  */
+
 public class FileLogger {
 
     private static Pattern date = Pattern.compile(

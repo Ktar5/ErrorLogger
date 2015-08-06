@@ -8,9 +8,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Carter on 8/3/2015.
+/*
+ * Copyright (C) 2011-Current Carter Gale (Ktar5) <buildfresh@gmail.com>
+ *
+ * This file is part of errors.
+ *
+ * errors can not be copied and/or distributed without the express
+ * permission of the aforementioned owner.
  */
+
 public class ErrorLogger {
 
     public static void log(Throwable thrown, String pluginName) throws IOException {

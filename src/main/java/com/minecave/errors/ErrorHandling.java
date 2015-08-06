@@ -13,9 +13,15 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
-/**
- * Created by Carter on 7/29/2015.
+/*
+ * Copyright (C) 2011-Current Carter Gale (Ktar5) <buildfresh@gmail.com>
+ *
+ * This file is part of errors.
+ *
+ * errors can not be copied and/or distributed without the express
+ * permission of the aforementioned owner.
  */
+
 public class ErrorHandling extends JavaPlugin{
 
     @Getter

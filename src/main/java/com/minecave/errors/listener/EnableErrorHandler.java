@@ -27,7 +27,7 @@ public class EnableErrorHandler extends Handler {
 
     private void handleLog(final LogRecord record) throws IOException {
         if (record.getThrown() != null) {
-            ErrorLogger.log(record.getThrown(), pluginN);
+            ErrorLogger.log(record.getThrown(), "onEnable");
         }
     }
 
